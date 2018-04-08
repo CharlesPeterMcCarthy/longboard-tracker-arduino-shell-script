@@ -1,6 +1,7 @@
 count=0
 speedString=""
 distance=0
+url="{{URL}}" # Put API URL here
 
 for speed in `cat speeds.txt`
 do
@@ -22,6 +23,6 @@ done
 response=$(curl \
 -H "Accept: application/json" \
 -H "Content-Type:application/json" \
--X POST --data '{"API_KEY":"d581128856e29d64ea3878923a9ea95c","speeds":['$speedString'],"distance":'$distance'}' https://dingdongdelivery.ie/receive_speeds.php)
+-X POST --data '{"API_KEY":"d581128856e29d64ea3878923a9ea95c","speeds":['$speedString'],"distance":'$distance'}' $url)
 
 echo $response
