@@ -14,24 +14,27 @@ distance=0
 for speed in `cat speeds.txt`
 do
   if [ $speed != "" ]; then
-    if [[ $speed == d_* ]]; then
-      distance=$(echo $speed | cut -d'_' -f 2)      # Get distance number from line prepended with "d_"
-    else
-      if [ $count -gt 0 ]; then
-        speedString=$speedString","
-      fi
+    speed=$(echo $speed | xargs)    # Remove white space (Causes problems otherwise)
 
-      speedString=$speedString$speed
-    fi
+    case $speed in
+      d_* ) # Check for total distance log
+        distance=$(echo $speed | cut -d'_' -f 2)
+        break         # Distance log is the last record - break out of loop
+      ;;
+    esac
 
-    (( count++ ))
+    speedString=$speedString$speed,
+
+    count=$((count+1))
   fi
 done
 
-        # Create JSON object containing data and security keys/passwords
-response=$(curl \
+      # Create JSON object containing data and security keys/passwords
+      # Send speeds as a string instead of array.
+      # The API will turn it into an array
+data='{"API_KEY":"'$API_KEY'","deviceName":"'$deviceName'","devicePass":"'$devicePass'","speeds":"'$speedString'","distance":'$distance'}'
+
+curl \
 -H "Accept: application/json" \
 -H "Content-Type:application/json" \
--X POST --data '{"API_KEY":"'$API_KEY'","deviceName":"'$deviceName'","devicePass":"'$devicePass'","speeds":['$speedString'],"distance":'$distance'}' $API_URL)
-
-echo $response    # Return response back to Arduino
+-X POST --data $data $API_URL
