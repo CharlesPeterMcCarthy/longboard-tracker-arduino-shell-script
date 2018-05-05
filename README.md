@@ -24,5 +24,5 @@ Shell Script to be placed in the Linux file system on an Arduino Yún
   - Change `{{API_URL}}` to the URL of your API
   - Change `{{API_KEY}}` to the API key
 - **device_info.txt**
-  - Change `{{$DEVICE_NAME}}` to the device's registered name
-  - Change `{{$DEVICE_PASSWORD}}` to the device's registered password
+  - Change `{{DEVICE_NAME}}` to the device's registered name
+  - Change `{{DEVICE_PASSWORD}}` to the device's registered password
