@@ -1,7 +1,9 @@
 # longboard_shell_script
 Shell Script to be placed in the Linux file system on an Arduino Yún
-*Do not place these files on a mounted SD card because the Shell Script will not be executable*
-*The shell script (`send_speeds.sh`) follows Ash standards (not Bash) due to the Arduino Yún having Ash built in by default*
+
+*Do not place these files on a mounted SD card because the Shell Script will not be executable.*
+
+*The shell script (`send_speeds.sh`) follows Ash standards (not Bash) due to the Arduino Yún having Ash built in by default.*
 
 ## How It Works
 - This script is called by the program running on an Arduino Yún ([Arduino GitHub Repo](https://github.com/CharlesPeterMcCarthy/longboard_arduino))
