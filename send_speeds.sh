@@ -1,11 +1,12 @@
-API_URL="{{API_URL}}"   # Put API URL here
-API_KEY="{{API_KEY}}"
-
 deviceNameLine=`sed -n '1p' device_info.txt`    # First line of text file
 devicePassLine=`sed -n '2p' device_info.txt`    # Second line of text file
+apiURLLine=`sed -n '3p' device_info.txt`    # Third line of text file
+apiKeyLine=`sed -n '4p' device_info.txt`    # Fourth line of text file
 
 deviceName=$(echo $deviceNameLine | cut -d':' -f 2)   # Get device name from line
 devicePass=$(echo $devicePassLine | cut -d':' -f 2)   # Get device password from line
+API_URL=$(echo $apiURLLine | cut -d':' -f 2)   # Get API URL from line
+API_KEY=$(echo $apiKeyLine | cut -d':' -f 2)   # Get API Key from line
 
 count=0
 speedString=""

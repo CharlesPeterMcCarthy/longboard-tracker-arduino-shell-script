@@ -1,2 +1,4 @@
 device_name:{{DEVICE_NAME}}
 device_pass:{{DEVICE_PASSWORD}}
+api_url:{{API_URL}}
+api_key:{{API_KEY}}
