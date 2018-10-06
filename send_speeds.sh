@@ -1,12 +1,14 @@
-deviceNameLine=`sed -n '1p' device_info.txt`    # First line of text file
-devicePassLine=`sed -n '2p' device_info.txt`    # Second line of text file
-apiURLLine=`sed -n '3p' device_info.txt`    # Third line of text file
-apiKeyLine=`sed -n '4p' device_info.txt`    # Fourth line of text file
+infoFile="info.txt"
 
-deviceName=$(echo $deviceNameLine | cut -d':' -f 2)   # Get device name from line
-devicePass=$(echo $devicePassLine | cut -d':' -f 2)   # Get device password from line
-API_URL=$(echo $apiURLLine | cut -d':' -f 2)   # Get API URL from line
-API_KEY=$(echo $apiKeyLine | cut -d':' -f 2)   # Get API Key from line
+deviceNameLine=`sed -n '1p' $infoFile`    # First line of text file
+devicePassLine=`sed -n '2p' $infoFile`    # Second line of text file
+apiURLLine=`sed -n '3p' $infoFile`    # Third line of text file
+apiKeyLine=`sed -n '4p' $infoFile`    # Fourth line of text file
+
+deviceName=$(echo $deviceNameLine | cut -d'=' -f 2)   # Get device name from line
+devicePass=$(echo $devicePassLine | cut -d'=' -f 2)   # Get device password from line
+API_URL=$(echo $apiURLLine | cut -d'=' -f 2)   # Get API URL from line
+API_KEY=$(echo $apiKeyLine | cut -d'=' -f 2)   # Get API Key from line
 
 count=0
 speedString=""
@@ -34,6 +36,8 @@ done
       # Send speeds as a string instead of array.
       # The API will turn it into an array
 data='{"API_KEY":"'$API_KEY'","deviceName":"'$deviceName'","devicePass":"'$devicePass'","speeds":"'$speedString'","distance":'$distance'}'
+
+echo $data
 
 curl \
 -H "Accept: application/json" \
